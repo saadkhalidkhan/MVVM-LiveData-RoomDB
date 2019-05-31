@@ -1,5 +1,6 @@
 package com.example.saad.mvvmlivedataexample.view.adapters;
 
+import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.saad.mvvmlivedataexample.data.local.model.Note;
 import com.example.saad.mvvmlivedataexample.R;
+import com.example.saad.mvvmlivedataexample.databinding.NoteItemBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,17 +23,26 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteHolder> {
     @NonNull
     @Override
     public NoteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.note_item, parent, false);
-        return new NoteHolder(itemView);
+
+        NoteItemBinding noteItemBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.note_item, parent, false);
+
+        return new NoteHolder(noteItemBinding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NoteHolder holder, int position) {
+    public void onBindViewHolder(@NonNull NoteHolder holder, final int position) {
         Note currentNote = notes.get(position);
-        holder.textViewTitle.setText(currentNote.getTitle());
-        holder.textViewDescription.setText(currentNote.getDescription());
-        holder.textViewPriority.setText(String.valueOf(currentNote.getPriority()));
+
+        holder.binding.setNotes(currentNote);
+
+        holder.binding.rlParent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null && position != RecyclerView.NO_POSITION) {
+                    listener.onItemClick(notes.get(position));
+                }
+            }
+        });
     }
 
     @Override
@@ -49,26 +60,14 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteHolder> {
     }
 
     class NoteHolder extends RecyclerView.ViewHolder {
-        private TextView textViewTitle;
-        private TextView textViewDescription;
-        private TextView textViewPriority;
 
-        public NoteHolder(View itemView) {
-            super(itemView);
-            textViewTitle = itemView.findViewById(R.id.text_view_title);
-            textViewDescription = itemView.findViewById(R.id.text_view_description);
-            textViewPriority = itemView.findViewById(R.id.text_view_priority);
+        NoteItemBinding binding;
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        public NoteHolder(NoteItemBinding itemView) {
+            super(itemView.getRoot());
 
-                    int position = getAdapterPosition();
-                    if (listener != null && position != RecyclerView.NO_POSITION) {
-                        listener.onItemClick(notes.get(position));
-                    }
-                }
-            });
+            binding = itemView;
+
         }
     }
 
