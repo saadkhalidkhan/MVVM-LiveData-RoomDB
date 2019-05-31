@@ -1,4 +1,4 @@
-package com.example.ttl1.mvvmlivedataexample;
+package com.example.saad.mvvmlivedataexample.data.local.db;
 
 import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
@@ -8,8 +8,11 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
+import com.example.saad.mvvmlivedataexample.data.local.model.Note;
+
 @Database(entities = {Note.class}, version = 1)
 public abstract class NoteDatabase extends RoomDatabase {
+
     private static NoteDatabase instance;
 
     public abstract NoteDao noteDao();

@@ -1,4 +1,4 @@
-package com.example.ttl1.mvvmlivedataexample.view.adapters;
+package com.example.saad.mvvmlivedataexample.view.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.ttl1.mvvmlivedataexample.Note;
-import com.example.ttl1.mvvmlivedataexample.R;
+import com.example.saad.mvvmlivedataexample.data.local.model.Note;
+import com.example.saad.mvvmlivedataexample.R;
 
 import java.util.ArrayList;
 import java.util.List;

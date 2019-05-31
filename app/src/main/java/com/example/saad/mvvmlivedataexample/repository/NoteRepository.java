@@ -1,8 +1,13 @@
-package com.example.ttl1.mvvmlivedataexample;
+package com.example.saad.mvvmlivedataexample.repository;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
+import android.content.Context;
 import android.os.AsyncTask;
+
+import com.example.saad.mvvmlivedataexample.data.local.db.NoteDao;
+import com.example.saad.mvvmlivedataexample.data.local.db.NoteDatabase;
+import com.example.saad.mvvmlivedataexample.data.local.model.Note;
 
 import java.util.List;
 
@@ -11,7 +16,7 @@ public class NoteRepository {
     private NoteDao noteDao;
     private LiveData<List<Note>> allNotes;
 
-    public NoteRepository(Application application){
+    public NoteRepository(Context application){
         NoteDatabase database = NoteDatabase.getInstance(application);
         noteDao = database.noteDao();
         allNotes = noteDao.getAllNotes();

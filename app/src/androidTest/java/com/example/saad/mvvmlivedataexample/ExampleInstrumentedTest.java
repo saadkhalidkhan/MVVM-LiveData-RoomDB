@@ -1,4 +1,4 @@
-package com.example.ttl1.mvvmlivedataexample;
+package com.example.saad.mvvmlivedataexample;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

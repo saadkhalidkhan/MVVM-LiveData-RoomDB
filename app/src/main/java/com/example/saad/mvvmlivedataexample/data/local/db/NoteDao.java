@@ -1,4 +1,4 @@
-package com.example.ttl1.mvvmlivedataexample;
+package com.example.saad.mvvmlivedataexample.data.local.db;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
@@ -6,6 +6,8 @@ import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
+
+import com.example.saad.mvvmlivedataexample.data.local.model.Note;
 
 import java.util.List;
 
