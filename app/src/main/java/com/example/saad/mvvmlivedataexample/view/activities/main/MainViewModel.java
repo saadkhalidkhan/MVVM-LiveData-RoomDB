@@ -1,17 +1,15 @@
 package com.example.saad.mvvmlivedataexample.view.activities.main;
 
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.ViewModel;
 import android.content.Context;
-import android.support.annotation.NonNull;
 
-import com.example.saad.mvvmlivedataexample.base.BaseViewModel;
 import com.example.saad.mvvmlivedataexample.data.local.model.Note;
 import com.example.saad.mvvmlivedataexample.repository.NoteRepository;
-import com.example.saad.mvvmlivedataexample.view.activities.main.MainNavigator;
 
 import java.util.List;
 
-public class MainViewModel extends BaseViewModel<MainNavigator> {
+public class MainViewModel extends ViewModel {
 
     private NoteRepository repository;
     private LiveData<List<Note>> allNotes;
@@ -22,11 +20,12 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
 //        allNotes = getRepository().getAllNotes();
 //    }
 
+    public MainViewModel() {
 
-    public MainViewModel(@NonNull Context application) {
-        super(application);
+    }
 
-        repository = new NoteRepository(application);
+    public void initData(Context context) {
+        repository = new NoteRepository(context);
         allNotes = repository.getAllNotes();
     }
 

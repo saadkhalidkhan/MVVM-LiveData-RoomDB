@@ -1,6 +1,7 @@
 package com.example.saad.mvvmlivedataexample.view.activities.main;
 
 import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
@@ -22,7 +23,7 @@ import com.example.saad.mvvmlivedataexample.R;
 
 import java.util.List;
 
-public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> implements MainNavigator, IMainActivity {
+public class MainActivity extends BaseActivity<ActivityMainBinding> implements MainNavigator, IMainActivity {
 
     //    private MainViewModel mainViewModel;
     public static final int ADD_NOTE_REQUEST = 1;
@@ -38,16 +39,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     }
 
     @Override
-    public MainViewModel getViewModel() {
-
-        mainViewModel = new MainViewModel(MainActivity.this);
-
-        return mainViewModel;
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+
+        mainViewModel.initData(this);
 
         mActivityMainBinding = getViewDataBinding();
 

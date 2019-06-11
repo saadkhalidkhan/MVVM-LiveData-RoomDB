@@ -11,17 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseViewModel> extends Fragment {
+public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
 
     private BaseActivity mActivity;
     private View mRootView;
     private T mViewDataBinding;
-    private V mViewModel;
 
     @LayoutRes
     public abstract int getLayout();
-
-    public abstract V getViewModel();
 
     @Override
     public void onAttach(Context context) {
@@ -38,7 +35,6 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mViewModel = getViewModel();
         setHasOptionsMenu(true);
     }
 
